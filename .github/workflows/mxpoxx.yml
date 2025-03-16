@@ -1,0 +1,31 @@
+name: mxpoxx
+
+on:
+  schedule:
+    - cron: '*/16 * * * *'  # 16分ごとに実行
+  workflow_dispatch:         # 手動実行も可能
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Pythonのセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 依存関係のインストール
+        run: |
+          pip install tweepy
+
+      - name: mxpoxx
+        env:
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_SECRET: ${{ secrets.ACCESS_SECRET }}
+        run: python mxpoxx.py
