@@ -23,7 +23,7 @@ client = tweepy.Client(
 )
 
 # 監視するターゲットのTwitterユーザーID(3つ)
-TARGET_USER_IDS = ["user1", "user2", "user3"]  # 監視するアカウントのID
+TARGET_USER_IDS = ["sata_kunnn", "scout_100000", "kazu10AAA"]  # 監視するアカウントのID
 current_index = 0  # どのアカウントを監視するか管理
 
 # 送信履歴を保存するファイル
@@ -127,4 +127,4 @@ while True:
         time.sleep(30)  # 30秒待機して再試行
     except tweepy.TweepyException as e:
         print(f"⚠️ エラー発生: {e}")
-        time.sleep(60)  # APIエラー時は1分待機
+        time.sleep(900)  # APIエラー時は1分待機
